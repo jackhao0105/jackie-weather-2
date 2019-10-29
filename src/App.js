@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import Title from './component/Title';
 import Form from './component/Form';
 import Weather from './component/Weather';
-import { identifier } from '@babel/types';
 
 // API key
 const key = 'e3069f0be257a43853928891a5153904';
