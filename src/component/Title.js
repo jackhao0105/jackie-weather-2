@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const Title = () => (
-  <div>
+  <div className='text-center'>
     <h1>Jackie's Weather</h1>
     <p>Find out the temperate, weather and more...</p>
   </div>

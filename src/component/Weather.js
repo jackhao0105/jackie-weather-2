@@ -1,37 +1,63 @@
 import React from 'react';
+import './Weather.css';
 
-const Weather = props => (
-  <div>
-    {props.description && <p>{props.description}</p>}
-    {props.icon && <p>{props.icon}</p>}
-    {props.city && props.country && (
-      <h2>
-        {props.city}, {props.country}{' '}
-      </h2>
-    )}
+class Weather extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div className='weather-wrap d-flex flex-column justify-content-between'>
+        {this.props.error && <p>{this.props.error}</p>}
+        <div className='weather'>
+          {this.props.description && (
+            <p className='display-4'>{this.props.description}</p>
+          )}
+          {this.props.icon && <img src={this.props.icon} alt='icon' />}
+        </div>
 
-    {/* ! Show the date*/}
-    <p>Date :... </p>
+        <div className='row border-top border-dark'>
+          <div className='col-md-7 d-flex justify-content-center align-items-center'>
+            {this.props.city && this.props.country && (
+              <p className='display-4'>
+                {this.props.city}, {this.props.country}{' '}
+              </p>
+            )}
+          </div>
 
-    {/* ! Show the Humidity*/}
-    {props.humidity && (
-      <div>
-        <p>H</p> <p> {props.humidity} </p>
+          {/* ! Show the Humidity*/}
+          <div className='col-md-1 px-0'>
+            <div className='column'>
+              {this.props.humidity && (
+                <div className='border border-top-0 border-dark'>
+                  <p>H</p>
+                  <p> {this.props.humidity}% </p>
+                </div>
+              )}
+
+              {/* ! Show the speed of Wind*/}
+              {this.props.wind && (
+                <div className='border border-top-0 border-dark'>
+                  <p>W</p>
+                  <p>{this.props.wind} m/s</p>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className='col-md-4 d-flex justify-content-center align-items-center'>
+            {/*Display the weather*/}
+            {this.props.temperature && (
+              <p className='display-4'>
+                {this.props.temperature}
+                {'\u00b0'}C
+              </p>
+            )}
+          </div>
+        </div>
       </div>
-    )}
-
-    {/* ! Show the speed of Wind*/}
-    {props.wind && (
-      <div>
-        <p>W</p> <p> {props.wind} </p>
-      </div>
-    )}
-
-    {/*Display the weather*/}
-    {props.temperature && <p>{props.temperature}</p>}
-
-    {props.error && <p>{props.error}</p>}
-  </div>
-);
+    );
+  }
+}
 
 export default Weather;

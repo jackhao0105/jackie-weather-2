@@ -19,6 +19,7 @@ class App extends Component {
     wind: undefined,
     humidity: undefined,
     icon: undefined,
+    picture: undefined,
     error: undefined
   };
 
@@ -34,13 +35,14 @@ class App extends Component {
     if (city) {
       console.log(data);
       this.setState({
-        temperature: data.main.temp,
+        temperature: Math.floor(data.main.temp - 273.15),
         description: data.weather[0].main,
         city: data.name,
         country: data.sys.country,
         wind: data.wind.speed,
         humidity: data.main.humidity,
-        icon: data.weather[0].icon,
+        icon:
+          'http://openweathermap.org/img/wn/' + data.weather[0].icon + '.png',
         error: ''
       });
     } else {
@@ -59,19 +61,27 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <Title />
-        <Form getWeather={this.getWeather} />
-        <Weather
-          city={this.state.city}
-          country={this.state.country}
-          temperature={this.state.temperature}
-          description={this.state.description}
-          wind={this.state.wind}
-          humidity={this.state.humidity}
-          icon={this.state.icon}
-          error={this.state.error}
-        />
+      <div className='App'>
+        <div className='row h-2'>
+          <div className='col-md-6 text-left'>
+            <Title />
+          </div>
+          <div className='col-md-6 text-right'>
+            <Form getWeather={this.getWeather} />
+          </div>
+        </div>
+
+        <div className='container d-flex flex-column rounded-lg'>
+          <Weather
+            temperature={this.state.temperature}
+            description={this.state.description}
+            city={this.state.city}
+            country={this.state.country}
+            humidity={this.state.humidity}
+            wind={this.state.wind}
+            icon={this.state.icon}
+          />
+        </div>
       </div>
     );
   }

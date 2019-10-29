@@ -1,0 +1,8 @@
+.formSearch {
+  font-size: 25px;
+  border: 1px solid transparent;
+  background: transparent;
+  border-bottom: 1px solid green;
+  border-radius: 3px;
+  width: 200px;
+}
